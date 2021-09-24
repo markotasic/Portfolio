@@ -1,5 +1,7 @@
+import Slider from '../../components/Slider/Slider';
+
 const Projects: React.FC = () => {
-  return <h1>Projects</h1>;
+  return <Slider />;
 };
 
 export default Projects;

@@ -1,29 +1,47 @@
-import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './MainNavigation.module.scss';
+import projects from '../../images/book.svg';
+import aboutMe from '../../images/person.svg';
+import email from '../../images/email.svg';
 
 const Nav = () => {
   return (
-    <Fragment>
+    <header className={classes.header}>
       <nav>
-        <ul className={classes.list}>
+        <ul>
           <li>
-            <NavLink to='/projects' activeClassName='selected'>
-              Projects
+            <NavLink
+              className={`${classes.neon} ${classes['neon-button']}`}
+              to='/about-me'
+              activeClassName={classes.active}
+            >
+              About Me
+              <img src={aboutMe} alt='about-me' />
             </NavLink>
           </li>
           <li>
-            <NavLink to='/about-me'>About Me</NavLink>
+            <NavLink
+              className={`${classes.neon} ${classes['neon-button']}`}
+              to='/projects'
+              activeClassName={classes.active}
+            >
+              Projects
+              <img src={projects} alt='projects' />
+            </NavLink>
           </li>
           <li>
-            <NavLink to='/languages'>Langueges</NavLink>
-          </li>
-          <li>
-            <NavLink to='/contact'>Contact</NavLink>
+            <NavLink
+              className={`${classes.neon} ${classes['neon-button']}`}
+              to='/contact'
+              activeClassName={classes.active}
+            >
+              Contact
+              <img src={email} alt='email' />
+            </NavLink>
           </li>
         </ul>
       </nav>
-    </Fragment>
+    </header>
   );
 };
 
