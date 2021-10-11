@@ -1,9 +1,8 @@
-import classes from './contact.module.scss';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Glass from '../../components/Layout/Glass';
+import Glass from '../components/Ui/Glass';
 import React, { useState, useRef } from 'react';
-import './contact.scss';
+import './Contact.scss';
 import emailjs from 'emailjs-com';
 
 toast.configure();
@@ -18,7 +17,8 @@ const Contact = () => {
 
   const [enteredMail, setEnteredMail] = useState('');
   const [enteredMailTouched, setEnteredMailTouched] = useState(false);
-  const enteredMailIsValid = enteredMail.includes('@');
+  const enteredMailIsValid =
+    enteredMail.includes('@') && enteredMail.includes('.');
   const mailInputIsInvalid = !enteredMailIsValid && enteredMailTouched;
 
   const [enteredSubject, setEnteredSubject] = useState('');
@@ -98,6 +98,15 @@ const Contact = () => {
       )
       .then(
         (resolve) => {
+          setEnteredName('');
+          setEnteredNameTouched(false);
+          setEnteredMail('');
+          setEnteredMailTouched(false);
+          setEnteredSubject('');
+          setEnteredSubjectTouched(false);
+          setEnteredMessage('');
+          setEnteredMessageTouched(false);
+
           toast.update(id, {
             render: 'Mail successfully sent!',
             type: 'success',
@@ -122,15 +131,6 @@ const Contact = () => {
           });
         }
       );
-
-    setEnteredName('');
-    setEnteredNameTouched(false);
-    setEnteredMail('');
-    setEnteredMailTouched(false);
-    setEnteredSubject('');
-    setEnteredSubjectTouched(false);
-    setEnteredMessage('');
-    setEnteredMessageTouched(false);
   };
 
   const nameInputClasses = nameInputIsInvalid
@@ -150,11 +150,7 @@ const Contact = () => {
     : 'form-control';
 
   return (
-    <form
-      ref={form}
-      onSubmit={formSubmissionHandler}
-      className={classes.contact}
-    >
+    <form ref={form} onSubmit={formSubmissionHandler} className='contact'>
       <Glass>
         <div className={nameInputClasses}>
           <input
@@ -181,7 +177,7 @@ const Contact = () => {
             value={enteredMail}
           />
           {mailInputIsInvalid && (
-            <p className='error-text'>Mail must not be empty.</p>
+            <p className='error-text'>Please enter a valid format! (@, .)</p>
           )}
         </div>
         <div className={subjectInputClasses}>
@@ -210,7 +206,7 @@ const Contact = () => {
             <p className='error-text'>Message must not be empty.</p>
           )}
         </div>
-        <input type='submit' value='Send' className={classes.sendBtn} />
+        <input type='submit' value='Send' className='sendBtn' />
       </Glass>
     </form>
   );
