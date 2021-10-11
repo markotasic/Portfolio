@@ -1,8 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import classes from './MainNavigation.module.scss';
-import projects from '../../images/book.svg';
-import aboutMe from '../../images/person.svg';
-import email from '../../images/email.svg';
+import { BookIcon, MailIcon, PersonIcon } from '../icons';
 
 const Nav = () => {
   return (
@@ -16,7 +14,7 @@ const Nav = () => {
               activeClassName={classes.active}
             >
               About Me
-              <img src={aboutMe} alt='about-me' />
+              <PersonIcon />
             </NavLink>
           </li>
           <li>
@@ -26,7 +24,7 @@ const Nav = () => {
               activeClassName={classes.active}
             >
               Projects
-              <img src={projects} alt='projects' />
+              <BookIcon />
             </NavLink>
           </li>
           <li>
@@ -36,7 +34,7 @@ const Nav = () => {
               activeClassName={classes.active}
             >
               Contact
-              <img src={email} alt='email' />
+              <MailIcon />
             </NavLink>
           </li>
         </ul>

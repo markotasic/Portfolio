@@ -1,13 +1,25 @@
 import classes from './about-me.module.scss';
 import Glass from '../../components/Layout/Glass';
-import htmlSvg from '../../images/html.svg';
-import cssSvg from '../../images/css.svg';
-import javascriptSvg from '../../images/javascript.svg';
-import reactSvg from '../../images/react.svg';
-import sassSvg from '../../images/sass.svg';
-import typescriptSvg from '../../images/typescript.svg';
+import {
+  CssIcon,
+  HtmlIcon,
+  JSIcon,
+  ReactIcon,
+  SassIcon,
+  TSIcon,
+} from '../../components/icons';
+import GlassSmall from '../../components/Layout/GlassSmall';
 
 const AboutMe = () => {
+  const language = (img: any, text: string) => {
+    return (
+      <GlassSmall>
+        {img}
+        <p>{text}</p>
+      </GlassSmall>
+    );
+  };
+
   return (
     <div className={classes.about}>
       <Glass>
@@ -20,48 +32,12 @@ const AboutMe = () => {
           eveniet animi ratione quae saepe?
         </p>
         <div className={classes['about-img']}>
-          <div>
-            <img src={htmlSvg} alt='html' />
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-              nulla temporibus veniam
-            </p>
-          </div>
-          <div>
-            <img src={cssSvg} alt='css' />
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-              nulla temporibus veniam
-            </p>
-          </div>
-          <div>
-            <img src={javascriptSvg} alt='javascript' />
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-              nulla temporibus veniam
-            </p>
-          </div>
-          <div>
-            <img src={reactSvg} alt='react' />
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-              nulla temporibus veniam
-            </p>
-          </div>
-          <div>
-            <img src={sassSvg} alt='sass' />
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-              nulla temporibus veniam
-            </p>
-          </div>
-          <div>
-            <img src={typescriptSvg} alt='typescript' />
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-              nulla temporibus veniam
-            </p>
-          </div>
+          {language(<HtmlIcon />, 'helllllloo')}
+          {language(<CssIcon />, 'lalala')}
+          {language(<JSIcon />, 'lalala')}
+          {language(<ReactIcon />, 'lalala')}
+          {language(<SassIcon />, 'lalala')}
+          {language(<TSIcon />, 'lalala')}
         </div>
       </Glass>
     </div>

@@ -56,6 +56,11 @@
 
 .neon {
   color: var(--clr-neon);
+  svg {
+    padding: 0.5em;
+    height: 30px;
+    margin-right: -10px;
+  }
 }
 
 .neon-button {
