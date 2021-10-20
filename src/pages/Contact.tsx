@@ -1,85 +1,68 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Glass from '../components/Ui/Glass';
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
+import useInput from '../hooks/use-input';
 import './Contact.scss';
 import emailjs from 'emailjs-com';
+
+const isNotEmpty = (value: any) => value.trim() !== '';
+const isEmail = (value: any) => value.includes('@') && value.includes('.');
 
 toast.configure();
 
 const Contact = () => {
   const form = useRef<null | HTMLFormElement>(null);
 
-  const [enteredName, setEnteredName] = useState('');
-  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
-  const enteredNameIsValid = enteredName.trim() !== '';
-  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
+  const {
+    value: enteredName,
+    isValid: enteredNameIsValid,
+    hasError: nameInputIsInvalid,
+    valueChangeHandler: nameInputChangeHandler,
+    inputBlurHandler: nameInputBlurHandler,
+    reset: resetNameInput,
+  } = useInput(isNotEmpty);
 
-  const [enteredMail, setEnteredMail] = useState('');
-  const [enteredMailTouched, setEnteredMailTouched] = useState(false);
-  const enteredMailIsValid =
-    enteredMail.includes('@') && enteredMail.includes('.');
-  const mailInputIsInvalid = !enteredMailIsValid && enteredMailTouched;
+  const {
+    value: enteredMail,
+    isValid: enteredMailIsValid,
+    hasError: mailInputIsInvalid,
+    valueChangeHandler: mailInputChangeHandler,
+    inputBlurHandler: mailInputBlurHandler,
+    reset: resetMailInput,
+  } = useInput(isEmail);
 
-  const [enteredSubject, setEnteredSubject] = useState('');
-  const [enteredSubjectTouched, setEnteredSubjectTouched] = useState(false);
-  const enteredSubjectIsValid = enteredSubject.trim() !== '';
-  const subjectInputIsInvalid = !enteredSubjectIsValid && enteredSubjectTouched;
+  const {
+    value: enteredSubject,
+    isValid: enteredSubjectIsValid,
+    hasError: subjectInputIsInvalid,
+    valueChangeHandler: subjectInputChangeHandler,
+    inputBlurHandler: subjectInputBlurHandler,
+    reset: resetSubjectInput,
+  } = useInput(isNotEmpty);
 
-  const [enteredMessage, setEnteredMessage] = useState('');
-  const [enteredMessageTouched, setEnteredMessageTouched] = useState(false);
-  const enteredMessageIsValid = enteredMessage.trim() !== '';
-  const messageInputIsInvalid = !enteredMessageIsValid && enteredMessageTouched;
-
-  const nameInputChangeHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setEnteredName(event.target.value);
-  };
-  const nameInputBlurHandler = () => {
-    setEnteredNameTouched(true);
-  };
-
-  const mailInputChangeHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setEnteredMail(event.target.value);
-  };
-  const mailInputBlurHandler = () => {
-    setEnteredMailTouched(true);
-  };
-
-  const subjectInputChangeHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setEnteredSubject(event.target.value);
-  };
-  const subjectInputBlurHandler = () => {
-    setEnteredSubjectTouched(true);
-  };
-
-  const messageInputChangeHandler = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setEnteredMessage(event.target.value);
-  };
-  const messageInputBlurHandler = () => {
-    setEnteredMessageTouched(true);
-  };
+  const {
+    value: enteredMessage,
+    isValid: enteredMessageIsValid,
+    hasError: messageInputIsInvalid,
+    valueChangeHandler: messageInputChangeHandler,
+    inputBlurHandler: messageInputBlurHandler,
+    reset: resetMessageInput,
+  } = useInput(isNotEmpty);
 
   const formSubmissionHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setEnteredNameTouched(true);
-    setEnteredMailTouched(true);
-    setEnteredSubjectTouched(true);
-    setEnteredMessageTouched(true);
+    nameInputBlurHandler();
+    mailInputBlurHandler();
+    subjectInputBlurHandler();
+    messageInputBlurHandler();
 
     if (
-      enteredName.trim() === '' ||
-      !enteredMail.includes('@') ||
-      enteredSubject.trim() === '' ||
-      enteredMessage.trim() === ''
+      !enteredNameIsValid ||
+      !enteredMailIsValid ||
+      !enteredSubjectIsValid ||
+      !enteredMessageIsValid
     )
       return;
 
@@ -87,6 +70,10 @@ const Contact = () => {
 
     const id = toast.loading('Sending...', {
       position: toast.POSITION.TOP_CENTER,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      hideProgressBar: true,
     });
 
     emailjs
@@ -98,24 +85,16 @@ const Contact = () => {
       )
       .then(
         (resolve) => {
-          setEnteredName('');
-          setEnteredNameTouched(false);
-          setEnteredMail('');
-          setEnteredMailTouched(false);
-          setEnteredSubject('');
-          setEnteredSubjectTouched(false);
-          setEnteredMessage('');
-          setEnteredMessageTouched(false);
+          resetNameInput();
+          resetMailInput();
+          resetSubjectInput();
+          resetMessageInput();
 
           toast.update(id, {
             render: 'Mail successfully sent!',
             type: 'success',
             isLoading: false,
-            hideProgressBar: true,
             autoClose: 3000,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
           });
         },
         (error) => {
@@ -123,11 +102,7 @@ const Contact = () => {
             render: 'An error occurred!',
             type: 'error',
             isLoading: false,
-            hideProgressBar: true,
             autoClose: 3000,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
           });
         }
       );
@@ -154,7 +129,6 @@ const Contact = () => {
       <Glass>
         <div className={nameInputClasses}>
           <input
-            className='input'
             type='text'
             name='name'
             placeholder='name'
@@ -168,7 +142,6 @@ const Contact = () => {
         </div>
         <div className={mailInputClasses}>
           <input
-            className='input'
             type='email'
             name='email'
             placeholder='yourmail@gmail.com'
@@ -182,7 +155,6 @@ const Contact = () => {
         </div>
         <div className={subjectInputClasses}>
           <input
-            className='input'
             type='text'
             name='subject'
             placeholder='subject'
@@ -196,7 +168,6 @@ const Contact = () => {
         </div>
         <div className={messageInputClasses}>
           <textarea
-            className='input'
             name='message'
             onChange={messageInputChangeHandler}
             onBlur={messageInputBlurHandler}

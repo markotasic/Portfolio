@@ -4,6 +4,7 @@ import Contact from './pages/Contact';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Error404 from './pages/NotFound';
+import ProjectDetail from './pages/ProjectDetail';
 
 function App() {
   return (
@@ -12,11 +13,14 @@ function App() {
         <Route path='/' exact>
           <Redirect to='/about-me' />
         </Route>
-        <Route path='/about-me' exact>
+        <Route path='/about-me'>
           <AboutMe />
         </Route>
-        <Route path='/projects'>
+        <Route path='/projects' exact>
           <Projects />
+        </Route>
+        <Route path='/projects/:detail'>
+          <ProjectDetail />
         </Route>
         <Route path='/contact'>
           <Contact />

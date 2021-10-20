@@ -14,6 +14,9 @@ const AboutMe = () => {
   return (
     <div className='about'>
       <Glass>
+        <a href='path_to_file' download='proposed_file_name'>
+          Download
+        </a>
         <h1>Marko Tasić</h1>
         <h4>I'm a Front End Developer from Niš, Serbia</h4>
         <p>
@@ -30,6 +33,7 @@ const AboutMe = () => {
           <Language img={SassIcon} text='qwerweqi' />
           <Language img={TSIcon} text='dsazxcxgfj' />
         </div>
+        <button className='cv'>CV</button>
       </Glass>
     </div>
   );
