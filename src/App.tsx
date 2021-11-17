@@ -1,29 +1,19 @@
-import Projects from './pages/Projects';
-import AboutMe from './pages/AboutMe';
-import Contact from './pages/Contact';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import { Route, Switch } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Error404 from './pages/NotFound';
 import ProjectDetail from './pages/ProjectDetail';
+import { ProjectDetailData } from './components/Slider/ProjectsData';
 
 function App() {
   return (
     <Layout>
       <Switch>
         <Route path='/' exact>
-          <Redirect to='/about-me' />
+          <HomePage />
         </Route>
-        <Route path='/about-me'>
-          <AboutMe />
-        </Route>
-        <Route path='/projects' exact>
-          <Projects />
-        </Route>
-        <Route path='/projects/:detail'>
-          <ProjectDetail />
-        </Route>
-        <Route path='/contact'>
-          <Contact />
+        <Route path='/:detail'>
+          <ProjectDetail slides={ProjectDetailData} />
         </Route>
         <Route path='*'>
           <Error404 />

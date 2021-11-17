@@ -1,17 +1,17 @@
+import React from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Glass from '../components/Ui/Glass';
-import React, { useRef } from 'react';
-import useInput from '../hooks/use-input';
-import './Contact.scss';
+import { useRef } from 'react';
+import useInput from '../../hooks/use-input';
 import emailjs from 'emailjs-com';
+import classes from './Contact.module.scss';
 
 const isNotEmpty = (value: any) => value.trim() !== '';
 const isEmail = (value: any) => value.includes('@') && value.includes('.');
 
 toast.configure();
 
-const Contact = () => {
+const Contact = (props: any) => {
   const form = useRef<null | HTMLFormElement>(null);
 
   const {
@@ -125,8 +125,13 @@ const Contact = () => {
     : 'form-control';
 
   return (
-    <form ref={form} onSubmit={formSubmissionHandler} className='contact'>
-      <Glass>
+    <div className={classes.contact}>
+      <h2>Let's talk!</h2>
+
+      <div className={classes.cross} onClick={props.onClose}></div>
+
+      <h3>New projects, freelance or even a job.</h3>
+      <form ref={form} onSubmit={formSubmissionHandler}>
         <div className={nameInputClasses}>
           <input
             type='text'
@@ -136,9 +141,7 @@ const Contact = () => {
             onBlur={nameInputBlurHandler}
             value={enteredName}
           />
-          {nameInputIsInvalid && (
-            <p className='error-text'>Name must not be empty.</p>
-          )}
+          {nameInputIsInvalid && <p>Name must not be empty.</p>}
         </div>
         <div className={mailInputClasses}>
           <input
@@ -149,9 +152,7 @@ const Contact = () => {
             onBlur={mailInputBlurHandler}
             value={enteredMail}
           />
-          {mailInputIsInvalid && (
-            <p className='error-text'>Please enter a valid format! (@, .)</p>
-          )}
+          {mailInputIsInvalid && <p>Please enter a valid format! (@, .)</p>}
         </div>
         <div className={subjectInputClasses}>
           <input
@@ -162,24 +163,21 @@ const Contact = () => {
             onBlur={subjectInputBlurHandler}
             value={enteredSubject}
           />
-          {subjectInputIsInvalid && (
-            <p className='error-text'>Subject must not be empty.</p>
-          )}
+          {subjectInputIsInvalid && <p>Subject must not be empty.</p>}
         </div>
         <div className={messageInputClasses}>
           <textarea
             name='message'
+            placeholder='message'
             onChange={messageInputChangeHandler}
             onBlur={messageInputBlurHandler}
             value={enteredMessage}
           />
-          {messageInputIsInvalid && (
-            <p className='error-text'>Message must not be empty.</p>
-          )}
+          {messageInputIsInvalid && <p>Message must not be empty.</p>}
         </div>
-        <input type='submit' value='Send' className='sendBtn' />
-      </Glass>
-    </form>
+        <button type='submit'>Send</button>
+      </form>
+    </div>
   );
 };
 

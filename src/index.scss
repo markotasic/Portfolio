@@ -1,43 +1,55 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  color: #0a0a0a;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-image: url(images/backsplash.jpg);
-  position: relative;
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-  background-repeat: no-repeat;
-  font-family: 'Balsamiq Sans', cursive;
-  height: 100vh;
+:root {
+  --text: #485861;
+  --text-p: #3c4043;
+
+  --green-text: #1f7a71;
+  --green-bg-dark: #ebffb9;
+  --green-bg-light: #edf6e9;
+
+  --brown-text: #7a3b00;
+  --brown-bg: #fef4ec;
+
+  --purple-text: #571782;
+  --purple-bg: #f5f0f9;
+
+  --red-text: #9e0800;
+  --red-bg: #f9e7e6;
+
+  --yellow-text: #3d4144;
+  --yellow-bg: #fcfbf9;
+
+  --bg-dark: #1c1d25;
+  --text-dark: #b0b2c3;
+
+  --bg-light: #ebebeb;
+  --text-light: #4c4f65;
 }
 
-.error-404 {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+body {
+  position: relative;
+  background-color: var(--bg-dark);
+  color: #fff;
+  height: fit-content;
+  margin: 0 auto;
+  font-family: League Spartan, Helvetica, Arial, sans-serif;
+  font-weight: 900;
+}
+
+.centered {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.glass {
-  width: 100%;
-  border-radius: 25px;
-  padding: 50px 25px;
-  background: linear-gradient(
-    to left bottom,
-    rgba(255, 255, 255, 0.2),
-    rgba(255, 255, 255, 0.5)
-  );
-  backdrop-filter: blur(10px);
-  h1 {
-    text-align: center;
-    font-size: 80px;
-  }
+.app-lab,
+.experience-the-world {
+  margin-left: -400px;
+}
+
+.experience-the-world {
+  margin-top: 50px;
+}
+
+.hidden {
+  display: none;
 }

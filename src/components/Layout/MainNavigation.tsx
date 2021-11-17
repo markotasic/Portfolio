@@ -1,41 +1,19 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import classes from './MainNavigation.module.scss';
-import { BookIcon, MailIcon, PersonIcon } from '../icons';
 
 const Nav = () => {
   return (
-    <header className={classes.header}>
+    <header className={classes.nav}>
       <nav>
         <ul>
           <li>
-            <NavLink
-              className={`${classes.neon} ${classes['neon-button']}`}
-              to='/about-me'
-              activeClassName={classes.active}
-            >
-              About Me
-              <PersonIcon />
-            </NavLink>
+            <Link to='/'>About</Link>
           </li>
           <li>
-            <NavLink
-              className={`${classes.neon} ${classes['neon-button']}`}
-              to='/projects'
-              activeClassName={classes.active}
-            >
-              Projects
-              <BookIcon />
-            </NavLink>
+            <Link to='/'>Projects</Link>
           </li>
           <li>
-            <NavLink
-              className={`${classes.neon} ${classes['neon-button']}`}
-              to='/contact'
-              activeClassName={classes.active}
-            >
-              Contact
-              <MailIcon />
-            </NavLink>
+            <Link to='/'>Contact</Link>
           </li>
         </ul>
       </nav>

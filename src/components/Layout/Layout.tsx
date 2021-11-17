@@ -1,10 +1,8 @@
 import MainNavigation from './MainNavigation';
 
-import classes from './Layout.module.scss';
-
 function Layout(props: any) {
   return (
-    <div className={classes.layout}>
+    <div>
       <MainNavigation />
       <main>{props.children}</main>
     </div>
