@@ -73,6 +73,11 @@
   }
 
   span {
+    color: #f06449;
+    font-weight: 700;
+  }
+
+  .languages {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -88,4 +93,87 @@
       }
     }
   }
+}
+
+.btn-download {
+  position: relative;
+  display: inline-block;
+  height: 50px;
+  width: 200px;
+  line-height: 50px;
+  padding: 0;
+  border-radius: 50px;
+  background: #fdfdfd;
+  margin: 10px;
+  transition: 0.5s;
+  border: 2px solid #f06449;
+  display: flex;
+
+  svg {
+    transition: fill 200ms;
+    fill: #fff;
+    height: 1.5rem;
+    margin-left: 0.35rem;
+    margin-top: 0.35rem;
+  }
+
+  &:hover {
+    background: linear-gradient(270deg, #f06449, #ef3636);
+
+    svg {
+      fill: #f06449;
+      position: absolute;
+    }
+
+    .circle {
+      left: 100%;
+      margin-left: -45px;
+      background-color: #fdfdfd;
+    }
+    .resume {
+      left: 40px;
+      opacity: 0;
+    }
+
+    .resume-hover {
+      opacity: 1;
+      left: 40px;
+    }
+  }
+}
+
+.circle {
+  display: block;
+  color: #fff;
+  position: absolute;
+  float: left;
+  margin: 5px;
+  line-height: 42px;
+  height: 40px;
+  width: 40px;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+  border-radius: 50%;
+  background-color: #f06449;
+}
+
+.resume,
+.resume-hover {
+  position: absolute;
+  left: 90px;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 16px;
+  font-weight: bold;
+
+  transition: 0.5s;
+  color: #f06449;
+  left: 80px;
+}
+
+.resume-hover {
+  left: 80px;
+  opacity: 0;
+  color: #fff;
 }

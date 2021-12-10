@@ -1,122 +1,99 @@
-// //@ts-ignore
-// import CV from '../components/CV/arg.pdf';
-//  <a href={CV} download='Marko Tasic CV' className='cv'>
-//   CV
-//  </a>
-
 import { Fragment } from 'react';
-import { CodePenIcon, GitHubIcon, LinkedInIcon } from '../components/icons';
 import classes from './HomePage.module.scss';
-import { ProjectData } from '../components/Slider/ProjectsData';
+import { ProjectData } from '../components/ProjectData/ProjectsData';
 import Modal from '../components/Modal/Modal';
-import { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { toggle } from '../store/modal/modalReducer';
+import Footer from '../components/Footer/Footer';
+//@ts-ignore
+import { Link } from 'react-scroll';
+import Lines from '../components/Lines/Lines';
+import Social from '../components/Social/Social';
 
 const HomePage = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const isOpen = useAppSelector((state) => state.modal.isOpen);
 
-  if (isOpen === true) {
-    document.getElementById('root')?.classList.add('hidden');
-  } else {
-    document.getElementById('root')?.classList.remove('hidden');
-  }
-
-  if (isOpen)
-    return (
-      <Fragment>
-        <Modal
-          open={isOpen}
-          onClose={() => {
-            setIsOpen(false);
-          }}
-        />
-      </Fragment>
-    );
-
-  return (
+  return !isOpen ? (
     <Fragment>
-      <div className={classes.social}>
-        <a
-          href='https://github.com/markotasic'
-          target='_blank'
-          rel='noreferrer'
-        >
-          <GitHubIcon />
-        </a>
-        <a
-          href='https://www.linkedin.com/in/markotasicc/'
-          target='_blank'
-          rel='noreferrer'
-        >
-          <LinkedInIcon />
-        </a>
-        <a
-          href='https://codepen.io/markotasic'
-          target='_blank'
-          rel='noreferrer'
-        >
-          <CodePenIcon />
-        </a>
-      </div>
+      <Lines />
+      <Social />
       <section className='centered'>
         <div className={classes.about}>
           <h1>Marko Tasić</h1>
           <h4>Front-End Developer</h4>
+
           <button
-            onClick={() => {
-              setIsOpen(true);
-            }}
+            onClick={() => dispatch(toggle())}
+            className='hover-btn-animation'
           >
-            About Me
+            <span>About Me</span>
           </button>
-          <a href='#projects'>
+
+          <Link to='projects' smooth={true} duration={1000}>
             <p>projects</p>
             <span />
-          </a>
+          </Link>
         </div>
       </section>
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      {/*  */}
+
       <section id='projects' className={classes.projects}>
         <h2>Latest Projects</h2>
         {ProjectData.map((slide, index) => {
           return (
             <Fragment>
               <div className={classes.lines}></div>
-              <div className={`${classes.overlay} ${slide.link}`}>
-                <h2>{slide.title}</h2>
-                <a href={slide.link}>Details</a>
-                <img src={slide.image} alt={slide.title} />
-                <div />
+              <div className='container'>
+                <div className='text'>
+                  <div className='content'>
+                    <div className={classes.language}>{slide.language}</div>
+                  </div>
+                  <div className='card-content'>
+                    <h2>{slide.title}</h2>
+                    <div className='buttons'>
+                      <a
+                        className='hover-btn-animation'
+                        href={slide.live}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        <span>Live</span>
+                      </a>
+                      {slide.code && (
+                        <a
+                          className='hover-btn-animation margin-left'
+                          href={slide.code}
+                          target='_blank'
+                          rel='noreferrer'
+                        >
+                          <span>Code</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <img src={slide.image} alt='Avatar' className='image' />
+                <div className='overlay'></div>
               </div>
             </Fragment>
           );
         })}
       </section>
-      <footer className='centered'>
-        <div>
-          <a
-            href='https://github.com/markotasic'
-            target='_blank'
-            rel='noreferrer'
-          >
-            GitHub
-          </a>
-          <a
-            href='https://www.linkedin.com/in/markotasicc/'
-            target='_blank'
-            rel='noreferrer'
-          >
-            LinkedIn
-          </a>
-          <a
-            href='https://codepen.io/markotasic'
-            target='_blank'
-            rel='noreferrer'
-          >
-            CodePen
-          </a>
-        </div>
-        <p>© All rights reserved Marko Tasić - 0611106779 - Contact</p>
-      </footer>
+
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      <Footer />
     </Fragment>
+  ) : (
+    <Modal onClose={() => dispatch(toggle())} isOpen={isOpen} />
   );
 };
 

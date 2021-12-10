@@ -1,11 +1,11 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import classes from './Modal.module.scss';
 import Contact from '../Contact/Contact';
 import AboutMe from '../AboutMe/AboutMe';
-import ParticleBackground from '../ParticleBackground';
+import ParticleBackground from '../particleBackground/ParticleBackground';
 
-const Backdrop = (props: any) => {
+const Backdrop = (props: { onClose: () => void }) => {
   return (
     <Fragment>
       <div onClick={props.onClose} className={classes.backdrop} />
@@ -14,17 +14,26 @@ const Backdrop = (props: any) => {
   );
 };
 
-const ModalOverlay = (props: any) => {
+const ModalOverlay = (props: { onClose: () => void }) => {
   return (
     <div className={classes.modal}>
       <AboutMe />
-      <Contact />
+      <Contact onClose={props.onClose} />
     </div>
   );
 };
 
-const Modal = (props: any) => {
-  if (!props.open) return null;
+const Modal = (props: { isOpen: boolean; onClose: () => void }) => {
+  useEffect(() => {
+    const body = document.querySelector('body');
+    if (!body) return;
+    body.style.overflow = 'hidden';
+    return () => {
+      body.style.overflow = 'visible';
+    };
+  }, [props.isOpen]);
+
+  if (!props.isOpen) return null;
 
   return (
     <Fragment>

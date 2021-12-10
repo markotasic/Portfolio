@@ -41,15 +41,245 @@ body {
   margin: 0 auto;
 }
 
-.app-lab,
-.experience-the-world {
-  margin-left: -400px;
-}
-
-.experience-the-world {
-  margin-top: 50px;
-}
-
 .hidden {
   display: none;
+}
+
+*::selection {
+  background-color: var(--green-bg-dark);
+  color: var(--bg-dark);
+  border-radius: 50px;
+}
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  bottom: -4px;
+  left: 0;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+  background: var(--green-bg-dark);
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.hover-btn-animation {
+  display: block;
+  user-select: none;
+  font-size: 18px;
+  font-weight: 800;
+  font-family: League Spartan, Helvetica, Arial, sans-serif;
+  background: var(--green-bg-dark);
+  padding: 12.5px 20px;
+  text-decoration: none;
+  color: #333;
+  border: none;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: background, color 0.35s;
+
+  @media only screen and (max-width: 700px) {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  & span {
+    position: relative;
+    z-index: 2;
+  }
+
+  &:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(270deg, #f06449, #ef3636);
+    transition: all 0.35s;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: #f4f4f4;
+  }
+
+  &:hover:after {
+    width: 100%;
+  }
+}
+
+// /////////////////////////////////////////////////////////////////////////////
+
+.container {
+  position: relative;
+  width: 50%;
+  align-items: center;
+  z-index: 5;
+  background-color: green;
+  margin-left: -200px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  @media only screen and (max-width: 1200px) {
+    margin-left: 0;
+    width: 80%;
+  }
+
+  @media only screen and (max-width: 700px) {
+    margin-left: 0;
+    width: 90%;
+  }
+
+  @media only screen and (max-width: 500px) {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: brightness(50%);
+  margin: 0 auto;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #181d2eda;
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+  transition: 0.5s ease;
+}
+
+.container:hover .overlay {
+  width: 100%;
+
+  @media only screen and (max-width: 700px) {
+    width: 0;
+  }
+}
+
+.container:hover .content {
+  opacity: 1;
+  transition: opacity 0.25s 0.25s ease-out;
+
+  @media only screen and (max-width: 700px) {
+    opacity: 0;
+  }
+}
+
+.container:hover .text {
+  h2 {
+    font-size: 32px;
+
+    @media only screen and (max-width: 500px) {
+      font-size: 25px;
+    }
+  }
+
+  a {
+    font-size: 1.4rem;
+  }
+}
+
+.text {
+  top: 0;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  z-index: 200;
+  width: 100%;
+  height: 100%;
+
+  .card-content {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+  }
+
+  h2 {
+    font-size: 50px;
+
+    @media only screen and (max-width: 1400px) {
+      font-size: 40px;
+    }
+
+    @media only screen and (max-width: 700px) {
+      font-size: 30px;
+    }
+
+    @media only screen and (max-width: 500px) {
+      font-size: 20px;
+    }
+  }
+
+  .buttons {
+    display: flex;
+  }
+
+  h2,
+  a {
+    transition: 0.25s 0.25s ease-out;
+  }
+
+  a:not(:first-child) {
+    margin-left: 25px;
+  }
+
+  .content {
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    display: flex;
+    opacity: 0;
+    svg {
+      margin-left: 20px;
+      height: 50px;
+      width: 50px;
+
+      @media only screen and (max-width: 1400px) {
+        height: 40px;
+        width: 40px;
+      }
+
+      @media only screen and (max-width: 700px) {
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+}
+
+#projects .container:nth-child(5) {
+  margin-left: 200px;
+
+  @media only screen and (max-width: 1400px) {
+    margin-left: 0;
+  }
 }

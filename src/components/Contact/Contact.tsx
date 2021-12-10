@@ -175,7 +175,9 @@ const Contact = (props: any) => {
           />
           {messageInputIsInvalid && <p>Message must not be empty.</p>}
         </div>
-        <button type='submit'>Send</button>
+        <button className='hover-btn-animation' type='submit'>
+          <span>Send</span>
+        </button>
       </form>
     </div>
   );

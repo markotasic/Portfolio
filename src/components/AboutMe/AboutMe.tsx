@@ -12,23 +12,17 @@ import classes from './AboutMe.module.scss';
 const AboutMe = () => {
   return (
     <div className={classes.about}>
-      <h2
-        onClick={() => {
-          console.log('hi');
-        }}
-      >
-        About Me.
-      </h2>
+      <h2>About Me.</h2>
       <p className={classes.who}>Front-end developer.</p>
       <p>
-        I'm Marko Tasic, a 20-year-old Serbian "self-taught" Front-end
-        developer. My studying was mostly true Udemy where i found 2 great
-        teachers, Jonas Schmedtmann from whom i learned HTML, CSS, JS, SASS and
-        Maximilian Schwarzmüller from whom i learned about TS and ReactJS. Most
-        of my time is spent practicing what I've learned and searching for a
-        job. Actually for hire :)
+        I'm Marko Tasic, a 20-year-old Serbian "self-taught"{' '}
+        <span>Front-end developer</span>. My studying was mostly true{' '}
+        <span>Udemy</span>. I like to <span>resolve</span> complex problems,{' '}
+        <span>create</span> beautiful looking websites and <span>make</span>{' '}
+        code cleaner. Most of my time is spent <span>practicing</span> what I've
+        learned and searching for a job. Actually for hire :)
       </p>
-      <span>
+      <div className={classes.languages}>
         <div className={classes.html}>
           <HtmlIcon />
         </div>
@@ -47,7 +41,7 @@ const AboutMe = () => {
         <div className={classes.ts}>
           <TSIcon />
         </div>
-      </span>
+      </div>
     </div>
   );
 };
