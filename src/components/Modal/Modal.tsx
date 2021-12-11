@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import classes from './Modal.module.scss';
 import Contact from '../Contact/Contact';
@@ -24,15 +24,6 @@ const ModalOverlay = (props: { onClose: () => void }) => {
 };
 
 const Modal = (props: { isOpen: boolean; onClose: () => void }) => {
-  useEffect(() => {
-    const body = document.querySelector('body');
-    if (!body) return;
-    body.style.overflow = 'hidden';
-    return () => {
-      body.style.overflow = 'visible';
-    };
-  }, [props.isOpen]);
-
   if (!props.isOpen) return null;
 
   return (

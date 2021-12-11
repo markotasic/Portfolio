@@ -5,12 +5,17 @@
   height: 90vh;
   box-sizing: border-box;
   padding: 75px;
-
   background-color: var(--bg-light);
   color: var(--text-light);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  @media only screen and (max-width: 650px) {
+    width: 95vw;
+    padding: 5%;
+    box-sizing: unset;
+  }
 
   h2 {
     color: #1c1d25;
@@ -87,6 +92,11 @@
       display: flex;
       height: 55px;
       width: 55px;
+
+      @media only screen and (max-width: 600px) {
+        width: 30px;
+        height: 30px;
+      }
       path {
         transition: 0.2s;
         fill: #1c1d25;

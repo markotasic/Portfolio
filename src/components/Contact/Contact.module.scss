@@ -11,6 +11,12 @@
   flex-direction: column;
   position: relative;
 
+  @media only screen and (max-width: 650px) {
+    width: 95vw;
+    padding: 5% 5% 20% 5%;
+    box-sizing: unset;
+  }
+
   button {
     margin-top: 50px;
     width: 125px;
@@ -26,6 +32,11 @@
     align-items: center;
     justify-content: center;
     transition: all 1s;
+
+    @media only screen and (max-width: 600px) {
+      top: 5px;
+      right: 5px;
+    }
 
     &:hover {
       cursor: pointer;
