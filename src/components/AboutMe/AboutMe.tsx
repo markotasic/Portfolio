@@ -1,7 +1,7 @@
 import {
   ReactIcon,
-  HtmlIcon,
-  CssIcon,
+  MongoDBIcon,
+  NodeJSIcon,
   SassIcon,
   JSIcon,
   TSIcon,
@@ -23,12 +23,6 @@ const AboutMe = () => {
         learned and searching for a job. Actually for hire :)
       </p>
       <div className={classes.languages}>
-        <div className={classes.html}>
-          <HtmlIcon />
-        </div>
-        <div className={classes.css}>
-          <CssIcon />
-        </div>
         <div className={classes.js}>
           <JSIcon />
         </div>
@@ -40,6 +34,12 @@ const AboutMe = () => {
         </div>
         <div className={classes.ts}>
           <TSIcon />
+        </div>
+        <div className={classes.nodejs}>
+          <NodeJSIcon />
+        </div>
+        <div className={classes.mongodb}>
+          <MongoDBIcon />
         </div>
       </div>
     </div>

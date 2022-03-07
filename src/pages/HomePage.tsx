@@ -56,14 +56,16 @@ const HomePage = () => {
                   <div className='card-content'>
                     <h2>{slide.title}</h2>
                     <div className='buttons'>
-                      <a
-                        className='hover-btn-animation'
-                        href={slide.live}
-                        target='_blank'
-                        rel='noreferrer'
-                      >
-                        <span>Live</span>
-                      </a>
+                      {slide.live && (
+                        <a
+                          className='hover-btn-animation'
+                          href={slide.live}
+                          target='_blank'
+                          rel='noreferrer'
+                        >
+                          <span>Live</span>
+                        </a>
+                      )}
                       {slide.code && (
                         <a
                           className='hover-btn-animation margin-left'
@@ -72,6 +74,16 @@ const HomePage = () => {
                           rel='noreferrer'
                         >
                           <span>Code</span>
+                        </a>
+                      )}
+                      {slide.gallery && (
+                        <a
+                          className='hover-btn-animation margin-left'
+                          href={slide.gallery}
+                          target='_blank'
+                          rel='noreferrer'
+                        >
+                          <span>Gallery</span>
                         </a>
                       )}
                     </div>

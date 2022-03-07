@@ -12,7 +12,7 @@ const Nav = () => {
   return !isOpen ? (
     <header className={classes.nav}>
       <nav>
-        <ul></ul>
+        <div />
         <ul>
           <li>
             <Link
