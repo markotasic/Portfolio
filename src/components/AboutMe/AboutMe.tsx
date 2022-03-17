@@ -16,7 +16,7 @@ const AboutMe = () => {
       <p className={classes.who}>Front-end developer.</p>
       <p>
         I'm Marko Tasic, a 20-year-old Serbian "self-taught"{' '}
-        <span>Front-end developer</span>. My studying was mostly true{' '}
+        <span>Front-end developer</span>. My studying was mostly through{' '}
         <span>Udemy</span>. I like to <span>resolve</span> complex problems,{' '}
         <span>create</span> beautiful looking websites and <span>make</span>{' '}
         code cleaner. Most of my time is spent <span>practicing</span> what I've
