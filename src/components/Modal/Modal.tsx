@@ -5,35 +5,40 @@ import Contact from '../Contact/Contact';
 import AboutMe from '../AboutMe/AboutMe';
 import ParticleBackground from '../particleBackground/ParticleBackground';
 
-const Backdrop = (props: { onClose: () => void }) => {
+interface ModalProps {
+  onClose: () => void;
+  isOpen?: boolean;
+}
+
+const Backdrop = ({ onClose }: ModalProps) => {
   return (
     <Fragment>
-      <div onClick={props.onClose} className={classes.backdrop} />
+      <div onClick={onClose} className={classes.backdrop} />
       <ParticleBackground />
     </Fragment>
   );
 };
 
-const ModalOverlay = (props: { onClose: () => void }) => {
+const ModalOverlay = ({ onClose }: ModalProps) => {
   return (
     <div className={classes.modal}>
       <AboutMe />
-      <Contact onClose={props.onClose} />
+      <Contact onClose={onClose} />
     </div>
   );
 };
 
-const Modal = (props: { isOpen: boolean; onClose: () => void }) => {
-  if (!props.isOpen) return null;
+const Modal = ({ isOpen, onClose }: ModalProps) => {
+  if (!isOpen) return null;
 
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <Backdrop onClose={props.onClose} />,
+        <Backdrop onClose={onClose} />,
         document.getElementById('backdrop-root')!
       )}
       {ReactDOM.createPortal(
-        <ModalOverlay onClose={props.onClose} />,
+        <ModalOverlay onClose={onClose} />,
         document.getElementById('overlay-root')!
       )}
     </Fragment>

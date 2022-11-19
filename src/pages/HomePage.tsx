@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import classes from './HomePage.module.scss';
 import { ProjectData } from '../components/ProjectData/ProjectsData';
 import Modal from '../components/Modal/Modal';
@@ -7,16 +6,15 @@ import { toggle } from '../store/modal/modalReducer';
 import Footer from '../components/Footer/Footer';
 //@ts-ignore
 import { Link } from 'react-scroll';
-import Lines from '../components/Lines/Lines';
 import Social from '../components/Social/Social';
+import Layout from '../components/Layout/Layout';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.modal.isOpen);
 
   return !isOpen ? (
-    <Fragment>
-      <Lines />
+    <Layout>
       <Social />
       <section className='centered'>
         <div className={classes.about}>
@@ -36,19 +34,14 @@ const HomePage = () => {
           </Link>
         </div>
       </section>
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
 
       <section id='projects' className={classes.projects}>
         <h2>Latest Projects</h2>
-        {ProjectData.map((slide, index) => {
-          return (
-            <Fragment>
-              <div className={classes.lines}></div>
-              <div className='container'>
+        <div className={classes.lines}></div>
+        <ul>
+          {ProjectData.map((slide, index) => {
+            return (
+              <li key={index} className='container'>
                 <div className='text'>
                   <div className='content'>
                     <div className={classes.language}>{slide.language}</div>
@@ -91,19 +84,13 @@ const HomePage = () => {
                 </div>
                 <img src={slide.image} alt='Avatar' className='image' />
                 <div className='overlay'></div>
-              </div>
-            </Fragment>
-          );
-        })}
+              </li>
+            );
+          })}
+        </ul>
       </section>
-
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
       <Footer />
-    </Fragment>
+    </Layout>
   ) : (
     <Modal onClose={() => dispatch(toggle())} isOpen={isOpen} />
   );

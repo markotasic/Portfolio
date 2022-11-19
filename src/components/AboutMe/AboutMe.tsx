@@ -14,8 +14,9 @@ const AboutMe = () => {
     <div className={classes.about}>
       <h2>About Me.</h2>
       <p className={classes.who}>Front-end developer.</p>
+
       <p>
-        I'm Marko Tasic, a 20-year-old Serbian "self-taught"{' '}
+        I'm Marko Tasic, a 21-year-old Serbian "self-taught"{' '}
         <span>Front-end developer</span>. My studying was mostly through{' '}
         <span>Udemy</span>. I like to <span>resolve</span> complex problems,{' '}
         <span>create</span> beautiful looking websites and <span>make</span>{' '}

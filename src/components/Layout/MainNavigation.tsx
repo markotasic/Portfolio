@@ -25,12 +25,12 @@ const Nav = () => {
             </Link>
           </li>
           <li>
-            <Link
+            <p
               onClick={() => dispatch(toggle())}
               className='hover-underline-animation p-tag'
             >
               Contact
-            </Link>
+            </p>
           </li>
         </ul>
       </nav>

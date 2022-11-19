@@ -1,10 +1,13 @@
+import { PropsWithChildren } from 'react';
 import MainNavigation from './MainNavigation';
 
-function Layout(props: any) {
+interface LayoutProps extends PropsWithChildren {}
+
+function Layout({ children }: LayoutProps) {
   return (
     <div>
       <MainNavigation />
-      <main>{props.children}</main>
+      <main>{children}</main>
     </div>
   );
 }

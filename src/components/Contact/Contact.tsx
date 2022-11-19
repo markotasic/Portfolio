@@ -6,12 +6,16 @@ import useInput from '../../hooks/use-input';
 import emailjs from 'emailjs-com';
 import classes from './Contact.module.scss';
 
-const isNotEmpty = (value: any) => value.trim() !== '';
-const isEmail = (value: any) => value.includes('@') && value.includes('.');
+const isNotEmpty = (value: string) => value.trim() !== '';
+const isEmail = (value: string) => value.includes('@') && value.includes('.');
 
 toast.configure();
 
-const Contact = (props: any) => {
+interface ContactProps {
+  onClose: () => void;
+}
+
+const Contact = ({ onClose }: ContactProps) => {
   const form = useRef<null | HTMLFormElement>(null);
 
   const {
@@ -76,6 +80,7 @@ const Contact = (props: any) => {
       hideProgressBar: true,
     });
 
+    console.log(form.current);
     emailjs
       .sendForm(
         'service_p2rj43o',
@@ -128,7 +133,7 @@ const Contact = (props: any) => {
     <div className={classes.contact}>
       <h2>Let's talk!</h2>
 
-      <div className={classes.cross} onClick={props.onClose}></div>
+      <div className={classes.cross} onClick={onClose}></div>
 
       <h3>New projects, freelance or even a job.</h3>
       <form ref={form} onSubmit={formSubmissionHandler}>

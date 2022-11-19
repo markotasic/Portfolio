@@ -1,19 +1,17 @@
 import HomePage from './pages/HomePage';
-import { Route, Switch } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
+import { Routes, Route } from 'react-router-dom';
 import Error404 from './pages/NotFound';
+import Lines from './components/Lines/Lines';
+
 function App() {
   return (
-    <Layout>
-      <Switch>
-        <Route path='/' exact>
-          <HomePage />
-        </Route>
-        <Route path='*'>
-          <Error404 />
-        </Route>
-      </Switch>
-    </Layout>
+    <>
+      <Lines />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='*' element={<Error404 />} />
+      </Routes>
+    </>
   );
 }
 
