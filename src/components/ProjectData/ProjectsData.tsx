@@ -3,6 +3,8 @@ import nishNocu from '../../images/nish-nocu.jpg';
 import iConnect from '../../images/iConnect.jpg';
 import eCommerce from '../../images/eCommerce.jpg';
 import passwordGenerator from '../../images/password-generator.jpg';
+import employeeApp from '../../images/employee-app.jpg';
+
 import {
   CssIcon,
   HtmlIcon,
@@ -38,6 +40,20 @@ export const ProjectData: projectItem[] = [
         <ReactIcon />
         <TSIcon />
         <SassIcon />
+      </div>
+    ),
+  },
+  {
+    link: 'employee-app',
+    title: 'Emlpoyee App',
+    image: employeeApp,
+    code: 'https://github.com/markotasic/full-employee-app',
+    language: (
+      <div>
+        <SassIcon />
+        <ReactIcon />
+        <NodeJSIcon />
+        <MongoDBIcon />
       </div>
     ),
   },
